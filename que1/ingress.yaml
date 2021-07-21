@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: scribetech-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: scribetech-nginx-svc
+              servicePort: nginx-svc-port
+
+---
+apiVersion: v1
+data:
+  allow-backend-server-header: "true"
+  use-forwarded-headers: "true"
+kind: ConfigMap
+metadata:
+  name: nginx-configuration

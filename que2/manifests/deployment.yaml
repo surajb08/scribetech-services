@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scribetech-python
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: scribetech-python
+  template:
+    metadata:
+      labels:
+        app: scribetech-python
+    spec:
+      containers:
+        - name: scribetech-python
+          image: suraj08/scribetech-python:v1
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+          ports:
+            - containerPort: 80
+              name: py-port

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: scribetech-nginx-svc
+spec:
+  selector:
+    app: nginx
+  ports:
+    - name: nginx-svc-port
+      port: 8090
+      targetPort: nginx-port
